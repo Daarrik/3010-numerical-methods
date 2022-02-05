@@ -5,7 +5,7 @@ public class Fraction {
     private int denominator;
 
     Fraction(int num, int den) {
-        if(den == 0) {
+        if (den == 0) {
             throw new IllegalArgumentException("Denominator can't be zero.");
         }
         numerator = num;
@@ -35,6 +35,7 @@ public class Fraction {
     public int getDen() {
         return denominator;
     }
+
     public Fraction add(Fraction frac) {
         int num = numerator * frac.denominator + denominator * frac.numerator;
         int den = denominator * frac.denominator;
@@ -54,7 +55,7 @@ public class Fraction {
     }
 
     public Fraction mult(Fraction frac) {
-        Fraction fraction =  new Fraction(numerator * frac.numerator, denominator * frac.denominator);
+        Fraction fraction = new Fraction(numerator * frac.numerator, denominator * frac.denominator);
         fraction.reduceFraction();
         fixSigns();
         return fraction;
@@ -67,24 +68,24 @@ public class Fraction {
         return fraction;
     }
 
-    public void reduceFraction() {  
-        int newDenom = gcd(numerator, denominator);  
-        setNum(numerator/newDenom);
-        setDen(denominator/newDenom);
+    public void reduceFraction() {
+        int newDenom = gcd(numerator, denominator);
+        setNum(numerator / newDenom);
+        setDen(denominator / newDenom);
         fixSigns();
-    }  
-  
-    public int gcd(int num, int den) {  
-        if (den == 0)  
+    }
+
+    public int gcd(int num, int den) {
+        if (den == 0)
             return num;
-        return gcd(den, num % den);    
+        return gcd(den, num % den);
     }
 
     public void fixSigns() {
-        if(numerator < 0 && denominator < 0) {
+        if (numerator < 0 && denominator < 0) {
             numerator = Math.abs(numerator);
             denominator = Math.abs(denominator);
-        } else if(numerator > 0 && denominator < 0) {
+        } else if (numerator > 0 && denominator < 0) {
             numerator *= -1;
             denominator = Math.abs(denominator);
         }
@@ -92,7 +93,7 @@ public class Fraction {
 
     @Override
     public String toString() {
-        if(denominator == 1)
+        if (denominator == 1)
             return String.format("%d", numerator);
         else
             return String.format("%d/%d", numerator, denominator);
